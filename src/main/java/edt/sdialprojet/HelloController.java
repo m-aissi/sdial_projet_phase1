@@ -11,7 +11,7 @@ public class HelloController {
     //on cree un etudiant
     private Etudiant etudiant1 = new Etudiant("bobby", "bob", "bobglocc", "hacked", "email@email.com", 123456);
     //on cree un professeur
-
+    //private Professeur professeur1 = new Professeur("bobby", "bob", "bobglocc", "hacked", "")
     @FXML
     protected void onHelloButtonClick() {
 
