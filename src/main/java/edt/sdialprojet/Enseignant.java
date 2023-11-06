@@ -2,6 +2,10 @@ package edt.sdialprojet;
 
 public class Enseignant extends Utilisateur{
 
+    //on cree le constructeur
+    public Enseignant(String nom, String prenom, String login, String password, String email) {
+        super(nom, prenom, login, password, email);
+    }
     public UniteEnseignement creerUE(String nom, int nbHeures, String nomResponsable, int creditECTS) {
         return new UniteEnseignement(nom, nbHeures, nomResponsable, creditECTS);
     }

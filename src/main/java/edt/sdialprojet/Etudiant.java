@@ -4,6 +4,14 @@ public class Etudiant extends Utilisateur{
 
     private int numeroEtudiant;
 
+    public int getNumeroEtudiant() {
+        return numeroEtudiant;
+    }
+
+    public void setNumeroEtudiant(int numeroEtudiant) {
+        this.numeroEtudiant = numeroEtudiant;
+    }
+
     public Etudiant(int numeroEtudiant) {
         this.numeroEtudiant = numeroEtudiant;
     }

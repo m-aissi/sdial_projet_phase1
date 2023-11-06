@@ -12,9 +12,9 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <Label text="Identifiant" />
-   <TextField />
-   <Label text="Mot de passe" />
-   <PasswordField />
+   <TextField fx:id="loginBox"  />
+   <Label  text="Mot de passe" />
+   <PasswordField fx:id="passwordBox"  />
     <Button onAction="#onHelloButtonClick" text="Connexion" />
 
     <Label fx:id="welcomeText" prefHeight="17.0" prefWidth="328.0" />
