@@ -7,15 +7,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="362.0" prefWidth="435.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="edt.sdialprojet.HelloController">
+<VBox alignment="CENTER" prefHeight="362.0" prefWidth="435.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <Label text="Identifiant" />
-   <TextField fx:id="loginBox"  />
-   <Label  text="Mot de passe" />
-   <PasswordField fx:id="passwordBox"  />
-    <Button onAction="#onHelloButtonClick" text="Connexion" />
+   <TextField fx:id="loginBox" />
+   <Label text="Mot de passe" />
+   <PasswordField fx:id="passwordBox" />
+    <Button  fx:id="logButton" onAction="#onLogButtonClick" text="Connexion" />
 
     <Label fx:id="welcomeText" prefHeight="17.0" prefWidth="328.0" />
 </VBox>

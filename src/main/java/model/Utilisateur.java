@@ -1,4 +1,4 @@
-package edt.sdialprojet;
+package model;
 
 public abstract class Utilisateur {
     private String nom;
@@ -11,6 +11,7 @@ public abstract class Utilisateur {
 
     public Utilisateur() {
     }
+
     public Utilisateur(String nom, String prenom, String login, String password, String email) {
         this.nom = nom;
         this.prenom = prenom;

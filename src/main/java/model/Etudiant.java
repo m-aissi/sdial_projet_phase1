@@ -1,8 +1,12 @@
-package edt.sdialprojet;
+package model;
 
 public class Etudiant extends Utilisateur{
 
     private int numeroEtudiant;
+
+    public Etudiant() {
+
+    }
 
     public int getNumeroEtudiant() {
         return numeroEtudiant;

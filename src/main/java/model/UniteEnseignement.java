@@ -1,4 +1,4 @@
-package edt.sdialprojet;
+package model;
 
 
 public class UniteEnseignement {
