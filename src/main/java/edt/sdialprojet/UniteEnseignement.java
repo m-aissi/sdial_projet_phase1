@@ -12,7 +12,7 @@ public class UniteEnseignement {
 
 
     //on déclare le constructeur de la classe
-    public UniteEnseignement(List<UniteEnseignement> liste, String code, String nom, int nbHeures, String nomResponsable, int creditECTS) {
+    public UniteEnseignement(String code, String nom, int nbHeures, String nomResponsable, int creditECTS) {
         this.code = code;
         this.nom = nom;
         this.nbHeures = nbHeures;

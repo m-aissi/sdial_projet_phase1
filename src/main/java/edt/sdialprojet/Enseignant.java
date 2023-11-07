@@ -8,8 +8,8 @@ public class Enseignant extends Utilisateur{
     public Enseignant(String nom, String prenom, String login, String password, String email) {
         super(nom, prenom, login, password, email);
     }
-    public UniteEnseignement creerUE(List<UniteEnseignement> liste, String code, String nom, int nbHeures, String nomResponsable, int creditECTS) {
-        return new UniteEnseignement(liste, code, nom, nbHeures, nomResponsable, creditECTS);
+    public UniteEnseignement creerUE(String code, String nom, int nbHeures, String nomResponsable, int creditECTS) {
+        return new UniteEnseignement(code, nom, nbHeures, nomResponsable, creditECTS);
     }
 
     public boolean doesExist(String nom, String prenom, List<Enseignant> listeEnseignant){
