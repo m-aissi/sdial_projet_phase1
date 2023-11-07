@@ -1,5 +1,7 @@
 package edt.sdialprojet;
 
+import java.util.List;
+
 public abstract class Utilisateur {
     private String nom;
     private String prenom;
@@ -17,6 +19,21 @@ public abstract class Utilisateur {
         this.login = login;
         this.password = password;
         this.email = email;
+    }
+
+    public boolean doesExist(String nom, String prenom, String login, String email, List<Enseignant> listeEnseignant){
+        boolean reply = false;
+        
+        if(listeEnseignant != null){
+            for (Enseignant enseignant : listeEnseignant) {
+                if ((nom != enseignant.getNom() && prenom != enseignant.getPrenom()) || login != enseignant.getLogin() || email != enseignant.getLogin()) {
+                    reply = true;
+                    return reply;
+                }
+            }
+        }
+    
+        return reply;
     }
 
     public String getNom() {

@@ -13,15 +13,11 @@ public class UniteEnseignement {
 
     //on déclare le constructeur de la classe
     public UniteEnseignement(List<UniteEnseignement> liste, String code, String nom, int nbHeures, String nomResponsable, int creditECTS) {
-        if(!doesExist(code, liste)){
-            this.code = code;
-            this.nom = nom;
-            this.nbHeures = nbHeures;
-            this.nomResponsable = nomResponsable;
-            this.creditECTS = creditECTS;
-        }else{
-            System.out.println("existe déjà");
-        }
+        this.code = code;
+        this.nom = nom;
+        this.nbHeures = nbHeures;
+        this.nomResponsable = nomResponsable;
+        this.creditECTS = creditECTS;
     }
 
     public boolean doesExist(String code, List<UniteEnseignement> listeUe){
@@ -31,6 +27,7 @@ public class UniteEnseignement {
             for (UniteEnseignement uniteEnseignement : listeUe) {
                 if (code == uniteEnseignement.code) {
                     reply = true;
+                    return reply;
                 }
             }
         }
