@@ -26,11 +26,31 @@ public class Creneau{
         
         if(listeCreneau != null){
             for (Creneau creneau : listeCreneau) {
-                if (salleNum != creneau.salleNum && (dateDebut.after(creneau.dateFin) || dateFin.before(creneau.dateDebut))) {
+                if (salleNum == creneau.salleNum && (dateDebut.before(creneau.dateFin) || dateFin.after(creneau.dateDebut))) {
                     reply = true;
                     return reply;
                 }
             }
+        }
+        
+        return reply;
+    }
+
+    public boolean modifyCreaneau(Creneau creneau, Date dateDebut, Date dateFin, int dureeMinute, UniteEnseignement matiere, Enseignant prof,
+            List<Etudiant> promo, int salleNum){
+        //ne pas oublier de mettre un doesExist avant pour tester les modifs
+        boolean reply = false;
+        
+        if(creneau != null){
+            creneau.setDateDebut(dateDebut);
+            creneau.setDateFin(dateFin);
+            creneau.setDureeMinute(dureeMinute);
+            creneau.setMatiere(matiere);
+            creneau.setProf(prof);
+            creneau.setPromo(promo);
+            creneau.setSalleNum(salleNum);
+            reply = true;
+            return reply;
         }
         
         return reply;

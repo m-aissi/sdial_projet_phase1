@@ -27,13 +27,30 @@ public abstract class Utilisateur {
         
         if(listeEnseignant != null){
             for (Enseignant enseignant : listeEnseignant) {
-                if ((nom != enseignant.getNom() && prenom != enseignant.getPrenom()) || login != enseignant.getLogin() || email != enseignant.getLogin()) {
+                if ((nom == enseignant.getNom() && prenom == enseignant.getPrenom()) || login == enseignant.getLogin() || email == enseignant.getLogin()) {
                     reply = true;
                     return reply;
                 }
             }
         }
     
+        return reply;
+    }
+
+    public boolean modifyUser(Utilisateur user, String nom, String prenom, String login, String password, String email){
+        //ne pas oublier de mettre un doesExist avant pour tester les modifs
+        boolean reply = false;
+        
+        if(user != null){
+            user.setNom(nom);
+            user.setPrenom(prenom);
+            user.setLogin(login);
+            user.setPassword(password);
+            user.setEmail(email);
+            reply = true;
+            return reply;
+        }
+        
         return reply;
     }
 

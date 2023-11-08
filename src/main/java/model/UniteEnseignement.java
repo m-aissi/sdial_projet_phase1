@@ -36,6 +36,23 @@ public class UniteEnseignement {
         return reply;
     }
 
+    public boolean modifyUE(UniteEnseignement UE, String code, String nom, int nbHeures, String nomResponsable, int creditECTS){
+        //ne pas oublier de mettre un doesExist avant pour tester les modifs
+        boolean reply = false;
+        
+        if(UE != null){
+            UE.setCode(code);
+            UE.setNom(nom);
+            UE.setNbHeures(nbHeures);
+            UE.setNomResponsable(nomResponsable);
+            UE.setCreditECTS(creditECTS);
+            reply = true;
+            return reply;
+        }
+        
+        return reply;
+    }
+
     public String getCode() {
         return code;
     }

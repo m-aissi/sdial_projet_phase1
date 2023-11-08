@@ -18,12 +18,12 @@ public class Enseignant extends Utilisateur{
         return new UniteEnseignement(code, nom, nbHeures, nomResponsable, creditECTS);
     }
 
-    public boolean doesExist(String nom, String prenom, List<Enseignant> listeEnseignant){
+    public boolean doesExist(String login, List<Enseignant> listeEnseignant){
         boolean reply = false;
         
         if(listeEnseignant != null){
             for (Enseignant enseignant : listeEnseignant) {
-                if (nom != enseignant.getNom() && prenom != enseignant.getPrenom()) {
+                if (login == enseignant.getLogin()) {
                     reply = true;
                     return reply;
                 }
