@@ -1,30 +1,32 @@
 package controller;
 
+import model.DataSingleton;
 import model.Etudiant;
 import model.Promotion;
-import javafx.application.Application;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import java.util.ResourceBundle;
 import java.io.IOException;
+import java.net.URL;
 
-import javafx.fxml.FXMLLoader;
 
-
-public class PromotionController extends Application {
+public class PromotionController implements Initializable {
 
     @FXML
     private TextField addPBox;
@@ -53,6 +55,9 @@ public class PromotionController extends Application {
     @FXML
     private Button addButton;
 
+    @FXML
+    private Button returnButton;
+
     public static Etudiant etudiant1 = new Etudiant("Michael", "Dupont", "a", "a", "a", 0);
     public static Etudiant etudiant2 = new Etudiant("Roger", "Franc", "a", "a", "a", 1);
     public static Etudiant etudiant3 = new Etudiant("Fabrice", "Blabla", "a", "a", "a", 2);
@@ -72,16 +77,10 @@ public class PromotionController extends Application {
     private String currentEtudSName;
     public static Etudiant currentEtudS;
     
+    DataSingleton data = DataSingleton.getInstance();
 
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
-     
-    public void start(Stage stage) throws IOException
-    {
-        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("promotion-view.fxml"));
-        fxmlLoader.setController(this);
-        Parent parent = (Parent)fxmlLoader.load();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
 
         refreshViewPromoList();
         
@@ -92,12 +91,6 @@ public class PromotionController extends Application {
         addButton.setDisable(true);
 
         refreshViewPromo(noProm);
-
-        Scene scene = new Scene(parent, 640, 480);
-        stage.setScene(scene);
-        stage.setTitle("test");
-        stage.show();
-
 
         addPBox.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.equals("")){
@@ -144,6 +137,7 @@ public class PromotionController extends Application {
 
 			}	
 		});
+        
     }
 
     @FXML
@@ -214,6 +208,22 @@ public class PromotionController extends Application {
     }
 
     @FXML
+    protected void onReturnBouttonClick() throws IOException {
+        //on change de scene une fois qu'on a defini le statut de l'utilisateur
+        Stage stage = (Stage) returnButton.getScene().getWindow();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("dashboard-view.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.setTitle("Dashboard");
+        stage.setScene(new Scene(root));
+
+
+    }
+
+    @FXML
     protected void onSupprPButtonClick() {
         System.out.println("My current promo is :"+currentPromoName);
         System.out.println("try to suprr for :"+currentPromoName);
@@ -270,4 +280,6 @@ public class PromotionController extends Application {
         ObservableList<String> promosObs = FXCollections.observableArrayList(promos);
         listPromo.setItems(promosObs);
     }
+
+    
 }

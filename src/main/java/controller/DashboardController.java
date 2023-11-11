@@ -51,6 +51,24 @@ public class DashboardController implements Initializable {
 
 
     }
+
+    @FXML
+    protected void onPromoButtonClick() throws IOException {
+
+        //on change de scene une fois qu'on a defini le statut de l'utilisateur
+        Stage stage = (Stage) ueButton.getScene().getWindow();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("promotion-view.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.setTitle("Gestion des promos");
+        stage.setScene(new Scene(root));
+
+    }
+
+
     @FXML
     protected void onCreneauButtonClick() throws IOException {
 
