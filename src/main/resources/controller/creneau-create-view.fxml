@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="669.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreneauCreateController">
+   <children>
+      <Button fx:id="valideButton" layoutX="44.0" layoutY="351.0" mnemonicParsing="false" onAction="#onValidateButtonClick" prefHeight="25.0" prefWidth="241.0" text="Valider" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="315.0" AnchorPane.topAnchor="351.0" />
+      <ListView fx:id="sallesList" layoutX="318.0" layoutY="59.0" prefHeight="246.0" prefWidth="226.0" />
+      <Label layoutX="324.0" layoutY="33.0" text="Salles" />
+      <Label fx:id="errorSalle" layoutX="324.0" layoutY="305.0" text="Error" textFill="RED" />
+      <Label fx:id="errorMinuteDebut" layoutX="116.0" layoutY="174.0" prefHeight="17.0" prefWidth="46.0" text="&lt;60" textFill="RED" />
+      <TextField fx:id="heureDebut" layoutX="47.0" layoutY="140.0" prefHeight="31.0" prefWidth="46.0" />
+      <Label layoutX="45.0" layoutY="102.0" prefHeight="17.0" prefWidth="213.0" text="Heure de debut" />
+      <Label fx:id="errorDate" layoutX="46.0" layoutY="75.0" prefHeight="17.0" prefWidth="167.0" text="Error 1" textFill="RED" />
+      <Label layoutX="44.0" layoutY="26.0" prefHeight="17.0" prefWidth="182.0" text="Date du créneau" />
+      <Button fx:id="returnButton" layoutX="419.0" layoutY="351.0" mnemonicParsing="false" onAction="#onReturnButtonClick" prefHeight="25.0" prefWidth="167.0" text="Retour" />
+      <DatePicker fx:id="dateDebut" layoutX="42.0" layoutY="47.0" />
+      <TextField fx:id="minuteDebut" layoutX="114.0" layoutY="140.0" prefHeight="31.0" prefWidth="46.0" text="0" />
+      <Label layoutX="116.0" layoutY="120.0" prefHeight="17.0" prefWidth="62.0" text="Minute">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="49.0" layoutY="120.0" prefHeight="17.0" prefWidth="46.0" text="Heures">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="100.0" layoutY="148.0" prefHeight="15.0" prefWidth="6.0" text=":" />
+      <Label fx:id="errorHeureDebutVide" layoutX="47.0" layoutY="192.0" prefHeight="17.0" prefWidth="139.0" text="Error" textFill="RED" />
+      <Label fx:id="errorHeureDebut" layoutX="49.0" layoutY="174.0" prefHeight="17.0" prefWidth="46.0" text="&lt;60" textFill="RED" />
+      <Label fx:id="errorMinuteFin" layoutX="112.0" layoutY="295.0" prefHeight="17.0" prefWidth="46.0" text="&lt;60" textFill="RED" />
+      <TextField fx:id="heureFin" layoutX="43.0" layoutY="261.0" prefHeight="31.0" prefWidth="46.0" />
+      <Label layoutX="41.0" layoutY="223.0" prefHeight="17.0" prefWidth="213.0" text="Heure de Fin" />
+      <TextField fx:id="minuteFin" layoutX="110.0" layoutY="261.0" prefHeight="31.0" prefWidth="46.0" text="0" />
+      <Label layoutX="112.0" layoutY="241.0" prefHeight="17.0" prefWidth="62.0" text="Minute">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="45.0" layoutY="241.0" prefHeight="17.0" prefWidth="46.0" text="Heures">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorHeureFinVide" layoutX="43.0" layoutY="313.0" prefHeight="17.0" prefWidth="139.0" text="Error" textFill="RED" />
+      <Label fx:id="errorHeureFin" layoutX="45.0" layoutY="295.0" prefHeight="17.0" prefWidth="46.0" text="&lt;60" textFill="RED" />
+   </children>
+</AnchorPane>

@@ -46,7 +46,26 @@ public class FileEncrypt {
 
             String s = new String(textEncrypted);
             System.out.println(s);
+            /**
+            // Save the encrypted text to a file
+                String pathh = "/datas/users-encrypted.dat";
+                File file = new File(FileEncrypt.class.getResourceAsStream(pathh).toString());
+                if(!file.exists())
+                {
+                    boolean created = file.createNewFile();
+                }
 
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("/datas/users-encrypted.dat"))) {
+                oos.writeObject(textEncrypted);
+            }
+
+            String filePathh = "/datas/users-encrypted.dat";
+
+
+            FileInputStream fis = new FileInputStream(filePathh);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Object object = ois.readObject();
+            **/
             aesCipher.init(Cipher.DECRYPT_MODE, key);
             byte[] textDecrypted = aesCipher.doFinal(textEncrypted);
 
@@ -82,6 +101,10 @@ public class FileEncrypt {
 
     private static boolean keyFileExists() {
         File file = new File("encryption_key.dat");
+        return file.exists();
+    }
+    private static boolean EncryptedTextExists() {
+        File file = new File("/datas/users-encrypted.dat");
         return file.exists();
     }
 }

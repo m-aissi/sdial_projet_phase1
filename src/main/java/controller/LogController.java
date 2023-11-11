@@ -46,12 +46,11 @@ public class LogController {
         scList.add(ed);
         scList.add(prof1);
 
-
     }
 
     @FXML
     protected void onLogButtonClick() throws IOException {
-
+        loadUsers();
         for (Utilisateur elem : scList){
 
             //on recup les login et password de la liste en retirat les caracteres non printable
@@ -89,4 +88,6 @@ public class LogController {
             }
         }
     }
+
+
 }

@@ -12,9 +12,6 @@ public class Enseignant extends Utilisateur{
 
     }
 
-    public UniteEnseignement creerUE(String nom, int nbHeures, String nomResponsable, int creditECTS) {
-        return new UniteEnseignement(nom, nbHeures, nomResponsable, creditECTS);
-    }
 
     public void supprimerUE(UniteEnseignement[] listeUE, UniteEnseignement ue) {
         for (int i = 0; i < listeUE.length; i++) {

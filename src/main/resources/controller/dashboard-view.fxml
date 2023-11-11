@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
    <children>
       <Label fx:id="dashboardLabel" layoutX="20.0" layoutY="22.0" prefHeight="17.0" prefWidth="323.0" text="Connecté en tant que" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="257.0" AnchorPane.topAnchor="22.0" />
@@ -21,10 +20,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="106.0" prefWidth="291.0" text="Editer les sessions" />
-            <Button mnemonicParsing="false" prefHeight="125.0" prefWidth="317.0" text="Editer les créneaux " GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="108.0" prefWidth="249.0" text="Editer les promotions" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="135.0" prefWidth="335.0" text="Editer les unités d'enseignement" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="106.0" prefWidth="291.0" text="Sessions" />
+            <Button mnemonicParsing="false" onAction="#onCreneauButtonClick" prefHeight="125.0" prefWidth="317.0" text="Créneaux " GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="108.0" prefWidth="249.0" text="Promotions" GridPane.columnIndex="1" />
+            <Button fx:id="ueButton" mnemonicParsing="false" onAction="#onUeButtonClick" prefHeight="135.0" prefWidth="335.0" text="Unités d'Enseignement" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="Se Deconnecter" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="350.0" />
