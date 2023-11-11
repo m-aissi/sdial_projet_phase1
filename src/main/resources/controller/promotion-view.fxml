@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Editer les promotions" textAlignment="CENTER" wrappingWidth="600.0" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Promotions :" />
+      <ListView fx:id="listPromo" prefHeight="74.0" prefWidth="600.0" />
+      <Button fx:id="modButton" mnemonicParsing="false" onAction="#onModButtonClick" prefHeight="25.0" prefWidth="706.0" text="Modifier" />
+      <Button fx:id="supprPButton" mnemonicParsing="false" onAction="#onSupprPButtonClick" prefHeight="25.0" prefWidth="632.0" text="Supprimer Promotion" />
+      <TextField fx:id="addPBox" prefHeight="25.0" prefWidth="539.0" />
+      <Button fx:id="addPButton" mnemonicParsing="false" onAction="#onAddPButtonClick" prefHeight="25.0" prefWidth="670.0" text="Créer Promotion" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Eleve de la promotion :" />
+      <ListView fx:id="listEleve" prefHeight="103.0" prefWidth="600.0" />
+      <ButtonBar prefHeight="40.0" prefWidth="200.0">
+         <buttons>
+            <Button fx:id="supprButton" mnemonicParsing="false" onAction="#onSupprButtonClick" prefHeight="25.0" prefWidth="608.0" text="Supprimer" />
+         </buttons>
+      </ButtonBar>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Eleve disponibles :" />
+      <ListView fx:id="listDisp" prefHeight="75.0" prefWidth="600.0" />
+      <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonClick" prefHeight="29.0" prefWidth="600.0" text="Ajouter" />
+   </children>
+</VBox>

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public abstract class Utilisateur {
     private String nom;
     private String prenom;
@@ -20,6 +22,38 @@ public abstract class Utilisateur {
         this.email = email;
     }
 
+    public boolean doesExist(String nom, String prenom, String login, String email, List<Utilisateur> listeUtilisateur){
+        boolean reply = false;
+        
+        if(listeUtilisateur != null){
+            for (Utilisateur utilisateur : listeUtilisateur) {
+                if ((nom == utilisateur.getNom() && prenom == utilisateur.getPrenom()) || login == utilisateur.getLogin() || email == utilisateur.getLogin()) {
+                    reply = true;
+                    return reply;
+                }
+            }
+        }
+    
+        return reply;
+    }
+
+    public boolean modifyUser(Utilisateur user, String nom, String prenom, String login, String password, String email){
+        //ne pas oublier de mettre un doesExist avant pour tester les modifs
+        boolean reply = false;
+        
+        if(user != null){
+            user.setNom(nom);
+            user.setPrenom(prenom);
+            user.setLogin(login);
+            user.setPassword(password);
+            user.setEmail(email);
+            reply = true;
+            return reply;
+        }
+        
+        return reply;
+    }
+
     public String getNom() {
         return nom;
     }
@@ -38,6 +72,10 @@ public abstract class Utilisateur {
 
     public String getLogin() {
         return login;
+    }
+
+    public String getNomPrenom(){
+        return nom+" "+prenom;
     }
 
     public void setLogin(String login) {
