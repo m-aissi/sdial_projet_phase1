@@ -269,6 +269,8 @@ public class PromotionController implements Initializable {
                 listEleve.getItems().clear();
                 listEleve.setItems(promosObs);
             }
+        }else{
+            listEleve.getItems().clear();
         }
     }
 
