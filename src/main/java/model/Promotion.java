@@ -7,6 +7,10 @@ import java.util.List;
 public class Promotion{
     private String nameProm;
     List<Etudiant> etudiants;
+
+    public Promotion() {
+    }
+
     public Promotion(String nameProm, List<Etudiant> etudiants) {
         this.nameProm = nameProm;
         this.etudiants = etudiants;

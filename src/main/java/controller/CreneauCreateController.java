@@ -67,7 +67,7 @@ public class CreneauCreateController implements Initializable {
     //on va cree une array avec la lsite des utilisateurs dans lequelle on va ajouter les utilisateurs déjà cree
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        clearErrorMessages();
+            clearErrorMessages();
 
         sallesList.getItems().add("salle1");
         sallesList.getItems().add("salle2");

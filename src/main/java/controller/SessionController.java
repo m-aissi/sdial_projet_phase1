@@ -8,9 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import model.DataSingleton;
-import model.Enseignant;
-import model.UniteEnseignement;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,23 +24,22 @@ public class SessionController implements Initializable {
     private Button returnButton;
 
     List<String> listeDesUes = new ArrayList<>();
-    String[] food = { "pizza" , "hamham" , "burger" };
-    DataSingleton data = DataSingleton.getInstance();
+
+    SessionSingleton listeSession = SessionSingleton.getInstance();
+
     //on va cree une array avec la lsite des utilisateurs dans lequelle on va ajouter les utilisateurs déjà cree
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Enseignant prof1 = new Enseignant("nom", "prenom", "2smart", "4u", "dd@dd");
 
-        UniteEnseignement ue1 = new UniteEnseignement("243","ue1", 10, prof1, 5);
-        UniteEnseignement ue2 = new UniteEnseignement("244","ue1", 10, prof1, 5);
-        UniteEnseignement ue3 = new UniteEnseignement("244","ue1", 10, prof1, 5);
-        UniteEnseignement ue4 = new UniteEnseignement("253","ue1", 10, prof1, 5);
+        try {
+            listeSession.lecture("/datas/session.txt");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        ueList.getItems().add(ue1.toString());
-        ueList.getItems().add(ue2.toString());
-        ueList.getItems().add(ue3.toString());
-        ueList.getItems().add(ue4.toString());
-
+        for (Session elem : listeSession.getListSession()){
+            ueList.getItems().add(elem.toString());
+        }
         //on recupere les listes des ues depuis un fichier
         // dashboardLabel.setText("Connecté en tant que " + data.getStatut() + " :)");
 

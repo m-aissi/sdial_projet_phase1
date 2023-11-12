@@ -11,7 +11,8 @@ public class UniteEnseignement {
     private int creditECTS;
     //ajouter d'autre attributs ?
 
-
+    public UniteEnseignement() {
+    }
     //on déclare le constructeur de la classe
     public UniteEnseignement(String code, String nom, int nbHeures, Enseignant responsable, int creditECTS) {
         this.code = code;
@@ -91,7 +92,7 @@ public class UniteEnseignement {
                          code + ':' +
                         nom +':' +
                         nbHeures +':'+
-                        responsable.getNom() + ':' +
+                        responsable.getLogin() + ':' +
                         creditECTS ;
     }
 }

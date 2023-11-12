@@ -30,7 +30,6 @@ public class SessionCreateController implements Initializable {
 
     CreneauSingleton creneau = CreneauSingleton.getInstance();
     UEsSingleton ues = UEsSingleton.getInstance();
-
     PromotionSingleton promotions = PromotionSingleton.getInstance();
 
     @FXML
@@ -88,10 +87,50 @@ public class SessionCreateController implements Initializable {
     protected void onValidateButtonClick() throws IOException {
 
         //on verifie qu'au moins un element à été choisi dans chaque lsit sinon on demande un element
+        if (nombreErreur() == 0){
+            String nomUe = ueList.getSelectionModel().getSelectedItem();
+            String nomPromo = promoList.getSelectionModel().getSelectedItem();
+            List<String> listeCreneau = new ArrayList<>();
+            for (String creneau : selectedCreneauList.getItems()) {
+                listeCreneau.add(creneau);
+            }
+           // Session session = new Session(nomUe, nomPromo, listeCreneau);
 
+        }
+        //on va verifier si
+    }
 
+    @FXML
+    protected void onAddCreneauButtonClick() throws IOException {
+        //on va verif que chaque champ est rempli correctement sinon on met a jour les messages d'erreur
+        if(creneauList.getSelectionModel().getSelectedItem() == null){
+            errorCreneau.setText("Veuillez selectionner un creneau");
+        }
+        else {
+            errorCreneau.setText("");
+            selectedCreneauList.getItems().add(creneauList.getSelectionModel().getSelectedItem());
+            creneauList.getItems().remove(creneauList.getSelectionModel().getSelectedItem());
+        }
+
+    }
+
+    @FXML
+    protected void onDelCreneauButtonClick() throws IOException {
+        if(selectedCreneauList.getSelectionModel().getSelectedItem() == null){
+            errorCreneau.setText("Veuillez selectionner un creneau");
+        }
+        else {
+            errorCreneau.setText("");
+            creneauList.getItems().add(selectedCreneauList.getSelectionModel().getSelectedItem());
+            selectedCreneauList.getItems().remove(selectedCreneauList.getSelectionModel().getSelectedItem());
+        }
+    }
+
+    private int nombreErreur() {
+        int nbErreur = 0;
         if (ueList.getSelectionModel().getSelectedItem() == null) {
             errorListUe.setText("Veuillez selectionner une salle");
+            nbErreur++;
         }
         else {
             errorListUe.setText("");
@@ -99,6 +138,7 @@ public class SessionCreateController implements Initializable {
 
         if (promoList.getSelectionModel().getSelectedItem() == null) {
             errorPromo.setText("Veuillez selectionner une salle");
+            nbErreur++;
         }
         else {
             errorPromo.setText("");
@@ -106,23 +146,12 @@ public class SessionCreateController implements Initializable {
 
         if (creneauList.getSelectionModel().getSelectedItem() == null) {
             errorCreneau.setText("Veuillez selectionner une salle");
+            nbErreur++;
         }
         else {
             errorCreneau.setText("");
         }
-    //on verifie que les creneaux ne se chevauchent pas
-        //on va verifier si
+
+        return nbErreur;
     }
-
-    @FXML
-    protected void onAddCreneauButtonClick() throws IOException {
-        //on va verif que chaque champ est rempli correctement sinon on met a jour les messages d'erreur
-
-    }
-
-    @FXML
-    protected void onDelCreneauButtonClick() throws IOException {
-
-    }
-
 }
