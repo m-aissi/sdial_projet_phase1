@@ -1,2 +1,2 @@
-IATIC4:skarbowsky:secured:deadge;244:sdial:14:nom:9;salle2:2023-11-16:110:130
-IATIC5:samsam:venez;1111:SSSSS:11:invoked:11;salle1:2023-11-16:110:130;salle1:2023-11-16:140:170
+IATIC4:secured;244:sdial:14:nom:9;salle2:2023-11-16:110:130;
+IATIC5:samsam:venez;1111:SSSSS:11:invoked:11;salle1:2023-11-16:110:130;salle1:2023-11-16:140:170;

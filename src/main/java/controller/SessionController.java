@@ -62,8 +62,12 @@ public class SessionController implements Initializable {
     @FXML
     protected void onSupprimeButtonClick() throws IOException {
         final int selectedIdx = ueList.getSelectionModel().getSelectedIndex();
+
         if (selectedIdx != -1) {
+            listeSession.setLastSessionTouched(listeSession.getListSession().get(selectedIdx));
             ueList.getItems().remove(selectedIdx);
+            listeSession.getListSession().remove(selectedIdx);
+            listeSession.suppression("src/main/resources/datas/session.txt");
         }
     }
     @FXML

@@ -26,6 +26,5 @@
             <Button fx:id="ueButton" mnemonicParsing="false" onAction="#onUeButtonClick" prefHeight="135.0" prefWidth="335.0" text="Unités d'Enseignement" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="Se Deconnecter" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="350.0" />
    </children>
 </AnchorPane>

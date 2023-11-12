@@ -8,7 +8,7 @@ import java.util.List;
  public class SessionSingleton implements FileHandler {
      private List<Session> listSession = new ArrayList<>();
      private static final SessionSingleton instance = new SessionSingleton();
-     private Creneau lastCreneauTouched;
+     private Session lastSessionTouched;
      UsersSingleton listeUsers = UsersSingleton.getInstance();
      private Boolean isInit = false;
      private SessionSingleton() {
@@ -95,8 +95,8 @@ import java.util.List;
 
      @Override
      public void creation(String nomFichier) {
-/*         // on va ajouter lastUeTouched de la liste des UE
-         listeCreneau.add(lastCreneauTouched);
+         // on va ajouter lastUeTouched de la liste des UE
+         listSession.add(lastSessionTouched);
 
          // et on reecri dans le fichier nomfichier la liste avec lastUeTouched
          try (FileWriter fw = new FileWriter(nomFichier, false);
@@ -104,17 +104,39 @@ import java.util.List;
               PrintWriter out = new PrintWriter(bw)) {
 
              //on ecrit chaque ligne dans le fichier et si c'est la derniere ligne on fait print ou lieu de println
-             for (Creneau elem : listeCreneau){
-                 if (listeCreneau.indexOf(elem) == listeCreneau.size() - 1){
-                     out.print(elem.toFile());
+             for (Session elem : listSession){
+
+                 String promTmp = "";
+                 promTmp += elem.getPromo().getNameProm() + ":";
+                 for(Etudiant etudiant :  elem.getPromo().getEtudiants()){
+                     //si c'est le dernier element on ne print pas :
+                        if(elem.getPromo().getEtudiants().indexOf(etudiant) == elem.getPromo().getEtudiants().size() - 1){
+                            promTmp += etudiant.getLogin();
+                        } else {
+                            promTmp += etudiant.getLogin() + ":";
+                        }
+                 }
+
+
+                 String ueTmp = elem.getUE().toFile();
+                 String creneauTmp = "";
+
+                 for(Creneau creneau : elem.getCreneau()){
+                     creneauTmp += creneau.toFile() + ";";
+                 }
+
+                 String res = promTmp + ";" + ueTmp + ";" + creneauTmp;
+
+                 if (listSession.indexOf(elem) == listSession.size() - 1){
+                     out.print(res);
                  } else {
-                     out.println(elem.toFile());
+                     out.println(res);
                  }
              }
 
          } catch (IOException e) {
              e.printStackTrace();
-         }*/
+         }
      }
 
 
@@ -125,27 +147,46 @@ import java.util.List;
 
      @Override
      public void suppression(String nomFichier) {
-/*         // on va retirer lastUeTouched de la liste des UE
-         listSession.remove(lastCreneauTouched);
+          // on va retirer lastUeTouched de la liste des UE
 
-         // et on reecri dans le fichier nomfichier la liste sans lastUeTouched
          try (FileWriter fw = new FileWriter(nomFichier, false);
               BufferedWriter bw = new BufferedWriter(fw);
               PrintWriter out = new PrintWriter(bw)) {
 
              //on ecrit chaque ligne dans le fichier et si c'est la derniere ligne on fait print ou lieu de println
-            for (Session elem : listSession){
-                if (listSession.indexOf(elem) == listSession.size() - 1){
-                    out.print(elem.toFile());
-                } else {
-                    out.println(elem.toFile());
-                }
-            }
+             for (Session elem : listSession){
+
+                 String promTmp = "";
+                 promTmp += elem.getPromo().getNameProm() + ":";
+                 for(Etudiant etudiant :  elem.getPromo().getEtudiants()){
+                     //si c'est le dernier element on ne print pas :
+                     if(elem.getPromo().getEtudiants().indexOf(etudiant) == elem.getPromo().getEtudiants().size() - 1){
+                         promTmp += etudiant.getLogin();
+                     } else {
+                         promTmp += etudiant.getLogin() + ":";
+                     }
+                 }
+
+
+                 String ueTmp = elem.getUE().toFile();
+                 String creneauTmp = "";
+
+                 for(Creneau creneau : elem.getCreneau()){
+                     creneauTmp += creneau.toFile() + ";";
+                 }
+
+                 String res = promTmp + ";" + ueTmp + ";" + creneauTmp;
+
+                 if (listSession.indexOf(elem) == listSession.size() - 1){
+                     out.print(res);
+                 } else {
+                     out.println(res);
+                 }
+             }
 
          } catch (IOException e) {
              e.printStackTrace();
-         }*/
-
+         }
      }
 
      public List<Session> getListSession() {
@@ -156,12 +197,12 @@ import java.util.List;
          this.listSession = listSession;
      }
 
-     public Creneau getLastCreneauTouched() {
-         return lastCreneauTouched;
+     public Session getLastSessionTouched() {
+         return lastSessionTouched;
      }
 
-     public void setLastCreneauTouched(Creneau lastCreneauTouched) {
-         this.lastCreneauTouched = lastCreneauTouched;
+     public void setLastSessionTouched(Session lastSessionTouched) {
+         this.lastSessionTouched = lastSessionTouched;
      }
 
      public UsersSingleton getListeUsers() {

@@ -41,6 +41,7 @@ public class SessionCreateController implements Initializable {
     @FXML
     private ListView<String> ueList;
 
+    SessionSingleton listeSession = SessionSingleton.getInstance();
     List<String> listeNomResponsable = new ArrayList<>();
     List<UniteEnseignement> listeUe = new ArrayList<>();
     //on va cree une array avec la lsite des utilisateurs dans lequelle on va ajouter les utilisateurs déjà cree
@@ -59,8 +60,21 @@ public class SessionCreateController implements Initializable {
         for (UniteEnseignement ue : ues.getListeUe()) {
             ueList.getItems().add(ue.toString());
         }
-        for (Creneau creneau : creneau.getListeCreneau()) {
-            creneauList.getItems().add(creneau.toString());
+        for (Creneau creneauTest : creneau.getListeCreneau()) {
+            Boolean creneauExiste = false;
+            //on verifie que le creneau n'est pas deja utiliser dans une session
+            for (Session session : listeSession.getListSession()) {
+                for(Creneau creneauSession : session.getCreneau()){
+                    System.out.println(creneauSession.toString());
+                    System.out.println("salut" + creneauTest.toString());
+                    if( creneauTest.toString().equals(creneauSession.toString())){
+                        creneauExiste = true;
+                    }
+                }
+            }
+            if(!creneauExiste) {
+                creneauList.getItems().add(creneauTest.toString());
+            }
         }
         for (Promotion promo : promotions.getListePromotions()) {
             promoList.getItems().add(promo.getNameProm());
@@ -94,10 +108,40 @@ public class SessionCreateController implements Initializable {
             for (String creneau : selectedCreneauList.getItems()) {
                 listeCreneau.add(creneau);
             }
-           // Session session = new Session(nomUe, nomPromo, listeCreneau);
 
+            //on init les valeurs pour cree session
+            UniteEnseignement ueTmp = new UniteEnseignement();
+            Promotion promoTmp = new Promotion();
+            List<Creneau> listeCreneauTmp = new ArrayList<>();
+
+            //on boucle sur la liste des Ue la liste des promo et enfin la liste des creau pour que eds que un to string soit egale on ajoute l'objet
+           for(UniteEnseignement ue : ues.getListeUe()){
+               if(ue.toString().equals(nomUe)){
+                   ueTmp = ue;
+                   break;
+               }
+           }
+
+           for(Promotion promo : promotions.getListePromotions()) {
+               if (promo.getNameProm().equals(nomPromo)) {
+                   promoTmp = promo;
+                   break;
+               }
+           }
+
+           for(Creneau creneau : creneau.getListeCreneau()) {
+               for (String creneauString : listeCreneau) {
+                   if (creneau.toString().equals(creneauString)) {
+                       listeCreneauTmp.add(creneau);
+                       break;
+                   }
+               }
+           }
+            //on cree la session
+            listeSession.setLastSessionTouched(new Session(promoTmp, ueTmp, listeCreneauTmp));
+            listeSession.creation("src/main/resources/datas/session.txt");
+            onReturnButtonClick();
         }
-        //on va verifier si
     }
 
     @FXML
@@ -129,7 +173,7 @@ public class SessionCreateController implements Initializable {
     private int nombreErreur() {
         int nbErreur = 0;
         if (ueList.getSelectionModel().getSelectedItem() == null) {
-            errorListUe.setText("Veuillez selectionner une salle");
+            errorListUe.setText("Veuillez selectionner une ue");
             nbErreur++;
         }
         else {
@@ -137,15 +181,15 @@ public class SessionCreateController implements Initializable {
         }
 
         if (promoList.getSelectionModel().getSelectedItem() == null) {
-            errorPromo.setText("Veuillez selectionner une salle");
+            errorPromo.setText("Veuillez selectionner une promo");
             nbErreur++;
         }
         else {
             errorPromo.setText("");
         }
 
-        if (creneauList.getSelectionModel().getSelectedItem() == null) {
-            errorCreneau.setText("Veuillez selectionner une salle");
+        if (selectedCreneauList.getItems().isEmpty()) {
+            errorCreneau.setText("Veuillez selectionner un creneau");
             nbErreur++;
         }
         else {
