@@ -20,7 +20,7 @@ public class UsersSingleton implements FileHandler{
         String filePath = nomFichier;
 
         // Open the file located in the resource and read it
-        InputStream is = FileEncrypt.class.getResourceAsStream(filePath);
+        InputStream is = UsersSingleton.class.getResourceAsStream(filePath);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String line;
 
