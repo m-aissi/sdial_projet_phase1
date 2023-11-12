@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import model.PromotionSingleton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,23 +68,30 @@ public class PromotionController implements Initializable {
     public static Promotion IATIC4 = new Promotion("IATIC4", new ArrayList<Etudiant>(Arrays.asList(etudiant2)));
     public static Promotion IATIC5 = new Promotion("IATIC5", new ArrayList<Etudiant>(Arrays.asList(etudiant3)));
     public static Promotion noProm = new Promotion( "NoProm", new ArrayList<Etudiant>(Arrays.asList(new Etudiant[]{etudiant4,etudiant5})));
-    public static List<Promotion> Promotions = new ArrayList<Promotion>(Arrays.asList(new Promotion[]{IATIC3,IATIC4,IATIC5}));
-    public static boolean isStartedEdit = false; 
 
+    public static boolean isStartedEdit = false;
+
+    PromotionSingleton listePromo = PromotionSingleton.getInstance();
     private String currentPromoName;
     public static Promotion currentPromo;
     private String currentEtudAName;
     public static Etudiant currentEtudA;
     private String currentEtudSName;
     public static Etudiant currentEtudS;
-    
+
     DataSingleton data = DataSingleton.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
 
+        try {
+            listePromo.lecture("/datas/promo.txt");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         refreshViewPromoList();
-        
+
         modButton.setDisable(true);
         supprPButton.setDisable(true);
         addPButton.setDisable(true);
@@ -109,7 +117,7 @@ public class PromotionController implements Initializable {
                 System.out.println(currentPromoName+" selected");
                 supprPButton.setDisable(false);
                 modButton.setDisable(false);
-			}	
+			}
 		});
 
         listEleve.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -119,27 +127,27 @@ public class PromotionController implements Initializable {
                 currentEtudSName = listEleve.getSelectionModel().getSelectedItem();
                 System.out.println(currentEtudSName+" selected");
                 supprButton.setDisable(false);
-			}	
+			}
 		});
 
         listDisp.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
-				
+
 				currentEtudAName = listDisp.getSelectionModel().getSelectedItem();
 				System.out.println(currentEtudAName+" selected");
                 if(!(noProm.getEtudiants() == null) && isStartedEdit){
                     if(!(noProm.getEtudiants().isEmpty())){
-                        if(!(Promotions.isEmpty())){
+                        if(!(listePromo.getListePromotions().isEmpty())){
                             addButton.setDisable(false);
                         }
                     }
                 }
 
-			}	
+			}
 		});
-        
+
     }
 
     @FXML
@@ -151,7 +159,7 @@ public class PromotionController implements Initializable {
             }
         }
 		System.out.println("My current promo is :"+currentPromoName);
-        for (Promotion promotion : Promotions) {
+        for (Promotion promotion : listePromo.getListePromotions()) {
             if(currentPromoName.equals(promotion.getNameProm())){
                 currentPromo = promotion;
             }
@@ -174,7 +182,7 @@ public class PromotionController implements Initializable {
         refreshViewPromo(currentPromo);
 
         noProm.getEtudiants().remove(currentEtudA);
-        
+
         refreshViewPromo(noProm);
 
         addButton.setDisable(true);
@@ -203,7 +211,7 @@ public class PromotionController implements Initializable {
     protected void onAddPButtonClick() {
         String AddPromName = addPBox.getText();
         System.out.println(AddPromName);
-        Promotions.add(new Promotion(AddPromName, null));
+        listePromo.getListePromotions().add(new Promotion(AddPromName, null));
         addPBox.clear();
 
         refreshViewPromoList();
@@ -229,7 +237,7 @@ public class PromotionController implements Initializable {
     protected void onSupprPButtonClick() {
         System.out.println("My current promo is :"+currentPromoName);
         System.out.println("try to suprr for :"+currentPromoName);
-        for (Promotion promotion : Promotions) {
+        for (Promotion promotion : listePromo.getListePromotions()) {
             if(currentPromoName.equals(promotion.getNameProm())){
                 currentPromo = promotion;
             }
@@ -245,12 +253,12 @@ public class PromotionController implements Initializable {
 
         refreshViewPromo(noProm);
 
-        Promotions.remove(currentPromo);
+        listePromo.getListePromotions().remove(currentPromo);
         listEleve.getItems().clear();
         supprButton.setDisable(true);
-        
+
         refreshViewPromoList();
-        
+
         modButton.setDisable(true);
         supprPButton.setDisable(true);
 
@@ -279,7 +287,7 @@ public class PromotionController implements Initializable {
 
     private void refreshViewPromoList(){
         List<String> promos = new ArrayList<String>();
-        for (Promotion promotion : Promotions) {
+        for (Promotion promotion : listePromo.getListePromotions()) {
             promos.add(promotion.getNameProm());
         }
         ObservableList<String> promosObs = FXCollections.observableArrayList(promos);

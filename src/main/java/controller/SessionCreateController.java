@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.UniteEnseignement;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +28,11 @@ public class SessionCreateController implements Initializable {
     @FXML
     private Button returnButton;
 
+    CreneauSingleton creneau = CreneauSingleton.getInstance();
+    UEsSingleton ues = UEsSingleton.getInstance();
+
+    PromotionSingleton promotions = PromotionSingleton.getInstance();
+
     @FXML
     private ListView<String> creneauList;
     @FXML
@@ -39,17 +44,28 @@ public class SessionCreateController implements Initializable {
 
     List<String> listeNomResponsable = new ArrayList<>();
     List<UniteEnseignement> listeUe = new ArrayList<>();
-
     //on va cree une array avec la lsite des utilisateurs dans lequelle on va ajouter les utilisateurs déjà cree
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         errorCreneau.setText("");
         errorListUe.setText("");
         errorPromo.setText("");
-        //on va afficher la liste des creneaux disponibles dans la liste des creneaux
-        //on va afficher les promotions dans la liste des promotions
-        //on va afficher les ues dans la liste des ues
-
+        try {
+            creneau.lecture("/datas/creneau.txt");
+            ues.lecture("/datas/ue.txt");
+            promotions.lecture("/datas/promo.txt");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (UniteEnseignement ue : ues.getListeUe()) {
+            ueList.getItems().add(ue.toString());
+        }
+        for (Creneau creneau : creneau.getListeCreneau()) {
+            creneauList.getItems().add(creneau.toString());
+        }
+        for (Promotion promo : promotions.getListePromotions()) {
+            promoList.getItems().add(promo.getNameProm());
+        }
     }
 
     @FXML
