@@ -85,4 +85,13 @@ public class UniteEnseignement {
                  responsable.getNom() + " | " +
                  creditECTS + " ECTS" + '\n';
     }
+
+    public String toFile() {
+        return
+                         code + ':' +
+                        nom +':' +
+                        nbHeures +':'+
+                        responsable.getNom() + ':' +
+                        creditECTS ;
+    }
 }

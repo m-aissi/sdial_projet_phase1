@@ -26,7 +26,7 @@ public class FileEncrypt {
             Cipher aesCipher = Cipher.getInstance("AES");
 
 
-            String filePath = "/datas/users-coy.txt";
+            String filePath = "/datas/users.txt";
 
             // on ouvre le fichier se trouvant dans ressource et on le lit
             InputStream is = FileEncrypt.class.getResourceAsStream(filePath);

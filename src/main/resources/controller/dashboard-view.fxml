@@ -20,7 +20,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="106.0" prefWidth="291.0" text="Sessions" />
+            <Button mnemonicParsing="false" onAction="#onSessionButtonClick" prefHeight="106.0" prefWidth="291.0" text="Sessions" />
             <Button mnemonicParsing="false" onAction="#onCreneauButtonClick" prefHeight="125.0" prefWidth="317.0" text="Créneaux " GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" onAction="#onPromoButtonClick" prefHeight="108.0" prefWidth="249.0" text="Promotions" GridPane.columnIndex="1" />
             <Button fx:id="ueButton" mnemonicParsing="false" onAction="#onUeButtonClick" prefHeight="135.0" prefWidth="335.0" text="Unités d'Enseignement" GridPane.columnIndex="1" GridPane.rowIndex="1" />

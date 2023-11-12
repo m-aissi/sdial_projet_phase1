@@ -6,20 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.DataSingleton;
-import model.Enseignant;
-import model.Etudiant;
-import model.Utilisateur;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+
 public class DashboardController implements Initializable {
     @FXML
     private Label dashboardLabel;
@@ -68,7 +62,6 @@ public class DashboardController implements Initializable {
 
     }
 
-
     @FXML
     protected void onCreneauButtonClick() throws IOException {
 
@@ -86,6 +79,22 @@ public class DashboardController implements Initializable {
 
 
     }
+    @FXML
+    protected void onSessionButtonClick() throws IOException {
 
+        //on change de scene une fois qu'on a defini le statut de l'utilisateur
+        Stage stage = (Stage) ueButton.getScene().getWindow();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass ().getResource("session-view.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.setTitle("Gestion des UEs");
+        stage.setScene(new Scene(root));
+
+
+
+    }
 
 }

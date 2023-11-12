@@ -15,7 +15,7 @@ public class main extends Application {
 
         FileEncrypt fe = new FileEncrypt();
         fe.encryptFile();
-
+    
         FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("log-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Identifiez-vous");

@@ -10,9 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
-import model.DataSingleton;
-import model.Enseignant;
-import model.UniteEnseignement;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,24 +47,27 @@ public class UeCreateController implements Initializable {
     @FXML
     private Label errorCode;
 
-    List<String> listeNomResponsable = new ArrayList<>();
+    UEsSingleton listeUes = UEsSingleton.getInstance();
+    UsersSingleton listeUsers = UsersSingleton.getInstance();
+    List<Enseignant> listeNomResponsable = new ArrayList<>();
     List<UniteEnseignement> listeUe = new ArrayList<>();
 
     //on va cree une array avec la lsite des utilisateurs dans lequelle on va ajouter les utilisateurs déjà cree
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Enseignant prof1 = new Enseignant("nom", "prenom", "2smart", "4u", "dd@dd");
-        Enseignant prof2 = new Enseignant("ssss", "ddd", "2smart", "4u", "dd@dd");
-        Enseignant prof3 = new Enseignant("aaz", "ssss", "2smart", "4u", "dd@dd");
 
-        listeNomResponsable.add(prof1.getNom());
-        listeNomResponsable.add(prof2.getNom());
-        listeNomResponsable.add(prof3.getNom());
+        Etudiant etudiantTmp = new Etudiant();
+        //on recupere la liste des utilisateurs
+        for (Utilisateur elem : listeUsers.getListeUsers()) {
+            if (!(etudiantTmp.getClass().equals(elem.getClass()))) {
+                listeNomResponsable.add((Enseignant) elem);
+                responsableList.getItems().add(elem.getNom());
+            }
+        }
 
-        responsableList.getItems().add(prof1.getNom());
-        responsableList.getItems().add(prof2.getNom());
-        responsableList.getItems().add(prof3.getNom());
+        clearErrorMessages();
 
+        Enseignant prof1 = new Enseignant("1","p","p","p","p");
         UniteEnseignement ue1 = new UniteEnseignement("243","ue1", 10, prof1, 5);
         UniteEnseignement ue2 = new UniteEnseignement("244","ue1", 10, prof1, 5);
         UniteEnseignement ue3 = new UniteEnseignement("245","ue1", 10, prof1, 5);
@@ -98,22 +99,51 @@ public class UeCreateController implements Initializable {
 
     @FXML
     protected void onValidateButtonClick() throws IOException {
-        //on va verif que chaque champ est rempli correctement sinon on met a jour les messages d'erreur
+
+        if(numberOfErrors() == 0){
+            //on init les variables
+            String code = codeUe.getText();
+            String nom = nomUe.getText();
+            int nbHeures = Integer.parseInt(heureUe.getText());
+            int creditECTS = Integer.parseInt(ectUe.getText());
+            int indiceSelected = responsableList.getSelectionModel().getSelectedIndex();
+            Enseignant responsable = listeNomResponsable.get(indiceSelected);
+
+            //on clear la view
+            clearErrorMessages();
+            clearFields();
+
+            //on cree l'ue
+            errorECTS.setText("UE creee avec succes");
+            listeUes.setLastUeTouched(new UniteEnseignement(code, nom, nbHeures, responsable, creditECTS));
+            listeUes.creation("src/main/resources/datas/ue.txt");
+
+        }
+        //on verifie que le code n'est pas deja utilise
+
+
+    }
+
+    private int numberOfErrors(){
         String code = codeUe.getText();
         String nom = nomUe.getText();
         String nbHeures = heureUe.getText();
         String responsable = responsableList.getSelectionModel().getSelectedItem();
         String creditECTS = ectUe.getText();
 
+        int nbErreur = 0;
+
         //on verifie si chaque champ est rempli
         if (code.isEmpty()) {
             errorCode.setText("Veuillez remplir ce champ");
+            nbErreur++;
         }
         else {
             errorCode.setText("");
         }
         if (nom.isEmpty()) {
             errorNom.setText("Veuillez remplir ce champ");
+            nbErreur++;
         }
         else {
             errorNom.setText("");
@@ -121,6 +151,7 @@ public class UeCreateController implements Initializable {
 
         if (nbHeures.isEmpty()) {
             errorHeure.setText("Veuillez remplir ce champ");
+            nbErreur++;
         }
         else {
             errorHeure.setText("");
@@ -128,6 +159,7 @@ public class UeCreateController implements Initializable {
         //on verifie que le responsable est bien selectionne
         if (responsable == null) {
             errorResponsable.setText("Veuillez selectionner un responsable");
+            nbErreur++;
         }
         else {
             errorResponsable.setText("");
@@ -135,6 +167,7 @@ public class UeCreateController implements Initializable {
 
         if (creditECTS.isEmpty()) {
             errorECTS.setText("Veuillez remplir ce champ");
+            nbErreur++;
         }
         else {
             errorECTS.setText("");
@@ -145,19 +178,39 @@ public class UeCreateController implements Initializable {
             Float.parseFloat(nbHeures);
         } catch (NumberFormatException e) {
             errorHeure.setText("Veuillez entrer un nombre");
+            nbErreur++;
         }
         try {
             Float.parseFloat(creditECTS);
         } catch (NumberFormatException e) {
             errorECTS.setText("Veuillez entrer un nombre");
+            nbErreur++;
         }
-        //on verifie que le code n'est pas deja utilise
-        for (UniteEnseignement elem : listeUe) {
+
+        for (UniteEnseignement elem : listeUes.getListeUe()) {
             if (elem.getCode().equals(code)) {
                 errorCode.setText("Ce code est deja utilise");
+                nbErreur++;
             }
         }
 
+        return nbErreur;
+
     }
 
+    private void clearErrorMessages() {
+        errorNom.setText("");
+        errorHeure.setText("");
+        errorResponsable.setText("");
+        errorECTS.setText("");
+        errorCode.setText("");
+    }
+
+    private void clearFields() {
+        codeUe.setText("");
+        nomUe.setText("");
+        heureUe.setText("");
+        ectUe.setText("");
+        responsableList.getSelectionModel().clearSelection();
+    }
 }

@@ -5,22 +5,22 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreneauCreateController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SessionCreateController">
    <children>
       <Button fx:id="valideButton" layoutX="46.0" layoutY="414.0" mnemonicParsing="false" onAction="#onValidateButtonClick" prefHeight="25.0" prefWidth="241.0" text="Valider" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="313.0" AnchorPane.topAnchor="414.0" />
-      <ListView fx:id="sallesList" layoutX="46.0" layoutY="56.0" prefHeight="246.0" prefWidth="226.0" />
+      <ListView fx:id="creneauList" layoutX="46.0" layoutY="56.0" prefHeight="246.0" prefWidth="226.0" />
       <Label layoutX="46.0" layoutY="30.0" text="Creneaux Disponibles" />
-      <Label fx:id="errorSalle" layoutX="318.0" layoutY="313.0" text="Error" textFill="RED" />
+      <Label fx:id="errorCreneau" layoutX="318.0" layoutY="313.0" text="Error" textFill="RED" />
       <Button fx:id="returnButton" layoutX="580.0" layoutY="414.0" mnemonicParsing="false" onAction="#onReturnButtonClick" prefHeight="25.0" prefWidth="167.0" text="Retour" />
-      <ListView fx:id="sallesList1" layoutX="546.0" layoutY="36.0" prefHeight="150.0" prefWidth="218.0" />
+      <ListView fx:id="ueList" layoutX="546.0" layoutY="36.0" prefHeight="150.0" prefWidth="218.0" />
       <Label layoutX="318.0" layoutY="30.0" text="Creneaux Selectionnés" />
-      <ListView fx:id="sallesList11" layoutX="546.0" layoutY="238.0" prefHeight="123.0" prefWidth="218.0" />
-      <ListView fx:id="sallesList12" layoutX="318.0" layoutY="63.0" prefHeight="246.0" prefWidth="218.0" />
+      <ListView fx:id="promoList" layoutX="546.0" layoutY="238.0" prefHeight="123.0" prefWidth="218.0" />
+      <ListView fx:id="selectedCreneauList" layoutX="318.0" layoutY="63.0" prefHeight="246.0" prefWidth="218.0" />
       <Label layoutX="546.0" layoutY="10.0" text="Liste UEs" />
       <Label layoutX="546.0" layoutY="212.0" text="Liste Promos" />
-      <Button fx:id="returnButton1" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#onReturnButtonClick" prefHeight="25.0" prefWidth="32.0" text="+" />
-      <Label fx:id="errorSalle1" layoutX="546.0" layoutY="186.0" text="Error" textFill="RED" />
-      <Label fx:id="errorSalle11" layoutX="546.0" layoutY="361.0" text="Error" textFill="RED" />
-      <Button fx:id="returnButton11" layoutX="282.0" layoutY="64.0" mnemonicParsing="false" onAction="#onReturnButtonClick" prefHeight="25.0" prefWidth="32.0" text="-" />
+      <Button fx:id="returnButton1" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#onAddCreneauButtonClick" prefHeight="25.0" prefWidth="32.0" text="+" />
+      <Label fx:id="errorListUe" layoutX="546.0" layoutY="186.0" text="Error" textFill="RED" />
+      <Label fx:id="errorPromo" layoutX="546.0" layoutY="361.0" text="Error" textFill="RED" />
+      <Button fx:id="returnButton11" layoutX="282.0" layoutY="64.0" mnemonicParsing="false" onAction="#onDelCreneauButtonClick" prefHeight="25.0" prefWidth="32.0" text="-" />
    </children>
 </AnchorPane>

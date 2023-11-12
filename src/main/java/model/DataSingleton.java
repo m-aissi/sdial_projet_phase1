@@ -1,9 +1,9 @@
 package model;
 
 public class DataSingleton {
-    private static final DataSingleton instance = new DataSingleton();
 
     private String statut;
+    private static final DataSingleton instance = new DataSingleton();
 
     private DataSingleton() {}
 
