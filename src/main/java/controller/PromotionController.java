@@ -131,7 +131,9 @@ public class PromotionController implements Initializable {
 				System.out.println(currentEtudAName+" selected");
                 if(!(noProm.getEtudiants() == null) && isStartedEdit){
                     if(!(noProm.getEtudiants().isEmpty())){
-                        addButton.setDisable(false);
+                        if(!(Promotions.isEmpty())){
+                            addButton.setDisable(false);
+                        }
                     }
                 }
 
@@ -238,6 +240,7 @@ public class PromotionController implements Initializable {
             for (Etudiant etudiant : currentPromo.getEtudiants()) {
                 noProm.addEtudiants(etudiant);
             }
+            currentPromo.setEtudiants(null);
         }
 
         refreshViewPromo(noProm);
@@ -254,7 +257,7 @@ public class PromotionController implements Initializable {
     }
 
     private void refreshViewPromo(Promotion promo){
-        if(!(noProm.getEtudiants() == null)){
+        if(!(promo.getEtudiants() == null)){
             System.err.println("reafficher");
             List<String> names = new ArrayList<String>();
             for (Etudiant etudiant : promo.getEtudiants() ){
@@ -269,6 +272,8 @@ public class PromotionController implements Initializable {
                 listEleve.getItems().clear();
                 listEleve.setItems(promosObs);
             }
+        }else{
+            listEleve.getItems().clear();
         }
     }
 
