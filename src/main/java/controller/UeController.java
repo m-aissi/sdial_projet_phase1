@@ -48,7 +48,6 @@ public class UeController implements Initializable {
         // dashboardLabel.setText("Connecté en tant que " + data.getStatut() + " :)");
 
     }
-
     @FXML
     protected void onCreateButtonClick() throws IOException {
         //on change de scene une fois qu'on a defini le statut de l'utilisateur
@@ -62,7 +61,6 @@ public class UeController implements Initializable {
         stage.setTitle("Dashboard");
         stage.setScene(new Scene(root));
     }
-
     @FXML
     protected void onSupprimeButtonClick() throws IOException {
         final int selectedIdx = ueList.getSelectionModel().getSelectedIndex();
